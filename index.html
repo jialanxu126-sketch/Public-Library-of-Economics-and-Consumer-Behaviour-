@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Public Library of Economics & Consumer Behaviour</title>
+    <title>{{ site.title }}</title>
 
     <meta
         name="description"
-        content="An independent research library exploring economics, consumer behaviour, markets and decision-making."
+        content="{{ site.description }}"
     >
 
     <style>
+
         :root {
             --background: #f7f6f2;
             --surface: #ffffff;
-            --surface-soft: #f0efe9;
-            --text: #252522;
-            --text-soft: #686862;
+            --sidebar: #f1f0eb;
+            --text: #292925;
+            --muted: #77766f;
+            --light-muted: #a09f97;
             --border: #deddd6;
             --accent: #596b61;
-            --accent-light: #e5ebe6;
+            --accent-soft: #e7ece8;
+
             --serif: Georgia, "Times New Roman", serif;
             --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
+
 
         * {
             box-sizing: border-box;
@@ -31,9 +37,11 @@
             padding: 0;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
+
 
         body {
             background: var(--background);
@@ -42,623 +50,692 @@
             line-height: 1.6;
         }
 
-        button,
-        input {
-            font: inherit;
-        }
 
         a {
             color: inherit;
             text-decoration: none;
         }
 
-        /* -------------------------
-           LAYOUT
-        ------------------------- */
 
-        .site {
-            display: flex;
-            min-height: 100vh;
-        }
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
-            width: 250px;
-            min-height: 100vh;
-            background: #f3f2ed;
-            border-right: 1px solid var(--border);
-            padding: 34px 25px;
+
             position: fixed;
-            left: 0;
+
             top: 0;
+            left: 0;
             bottom: 0;
+
+            width: 250px;
+
+            background: var(--sidebar);
+
+            border-right: 1px solid var(--border);
+
+            padding: 35px 25px;
+
             overflow-y: auto;
         }
 
-        .main {
-            margin-left: 250px;
-            width: calc(100% - 250px);
-        }
-
-        .content {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 0 55px 80px;
-        }
-
-        /* -------------------------
-           SIDEBAR
-        ------------------------- */
 
         .brand {
             margin-bottom: 55px;
         }
 
+
         .brand-mark {
-            width: 34px;
-            height: 34px;
+
+            width: 36px;
+            height: 36px;
+
             border: 1px solid var(--accent);
+
             border-radius: 50%;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
+
             font-family: var(--serif);
-            font-size: 18px;
+
+            color: var(--accent);
+
             margin-bottom: 14px;
         }
 
+
         .brand-name {
+
             font-family: var(--serif);
+
             font-size: 18px;
+
             line-height: 1.25;
-            max-width: 170px;
+
+            max-width: 180px;
         }
 
+
         .brand-subtitle {
-            font-size: 11px;
-            color: var(--text-soft);
+
             margin-top: 8px;
+
+            font-size: 11px;
+
+            color: var(--muted);
+
             letter-spacing: 0.03em;
         }
 
+
         .nav-section {
-            margin-bottom: 34px;
-        }
-
-        .nav-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #92918a;
-            margin-bottom: 12px;
-        }
-
-        .nav-link {
-            display: block;
-            padding: 7px 0;
-            font-size: 14px;
-            color: var(--text-soft);
-            transition: color 0.2s ease;
-            cursor: pointer;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--text);
-        }
-
-        .sidebar-note {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-            font-size: 11px;
-            line-height: 1.6;
-            color: #92918a;
-        }
-
-        /* -------------------------
-           TOP BAR
-        ------------------------- */
-
-        .topbar {
-            height: 76px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 55px;
-        }
-
-        .topbar-label {
-            font-size: 12px;
-            color: var(--text-soft);
-        }
-
-        .top-links {
-            display: flex;
-            gap: 24px;
-            font-size: 12px;
-            color: var(--text-soft);
-        }
-
-        .top-links a:hover {
-            color: var(--text);
-        }
-
-        /* -------------------------
-           HERO
-        ------------------------- */
-
-        .hero {
-            padding: 90px 0 80px;
-            max-width: 850px;
-        }
-
-        .eyebrow {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.17em;
-            color: var(--accent);
-            margin-bottom: 22px;
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(42px, 6vw, 72px);
-            font-weight: 400;
-            line-height: 1.02;
-            letter-spacing: -0.035em;
-            margin-bottom: 27px;
-        }
-
-        .hero p {
-            max-width: 650px;
-            color: var(--text-soft);
-            font-size: 17px;
-            line-height: 1.8;
-        }
-
-        /* -------------------------
-           SEARCH
-        ------------------------- */
-
-        .search-container {
-            margin-bottom: 80px;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            padding: 19px 22px 19px 52px;
-            outline: none;
-            font-size: 14px;
-            color: var(--text);
-            transition: border 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .search-box input:focus {
-            border-color: #aead a5;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999890;
-            font-size: 18px;
-        }
-
-        /* -------------------------
-           SECTIONS
-        ------------------------- */
-
-        section {
-            margin-bottom: 95px;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
-            margin-bottom: 28px;
-        }
-
-        .section-heading h2 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: 28px;
-        }
-
-        .section-heading span {
-            font-size: 11px;
-            color: var(--text-soft);
-        }
-
-        /* -------------------------
-           CURRENTLY EXPLORING
-        ------------------------- */
-
-        .exploring-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .exploring-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 27px;
-            min-height: 220px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .exploring-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
-        }
-
-        .card-number {
-            font-size: 11px;
-            color: #aaa9a1;
             margin-bottom: 35px;
         }
 
-        .exploring-card h3 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: 22px;
-            line-height: 1.25;
-            margin-bottom: 12px;
+
+        .nav-label {
+
+            margin-bottom: 11px;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.15em;
+
+            color: var(--light-muted);
         }
 
-        .exploring-card p {
-            color: var(--text-soft);
-            font-size: 13px;
-            line-height: 1.65;
+
+        .nav-link {
+
+            display: block;
+
+            padding: 7px 0;
+
+            font-size: 14px;
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            transition: color 0.2s ease;
         }
 
-        /* -------------------------
-           FILTERS
-        ------------------------- */
 
-        .filters {
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+
+        .sidebar-note {
+
+            margin-top: 55px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid var(--border);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            color: var(--light-muted);
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+
+            margin-left: 250px;
+
+            min-height: 100vh;
+        }
+
+
+        .topbar {
+
+            height: 76px;
+
+            border-bottom: 1px solid var(--border);
+
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 55px;
+        }
+
+
+        .topbar-label {
+
+            font-size: 12px;
+
+            color: var(--muted);
+        }
+
+
+        .top-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            font-size: 12px;
+
+            color: var(--muted);
+        }
+
+
+        .content {
+
+            max-width: 1180px;
+
+            margin: 0 auto;
+
+            padding: 0 55px 80px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            padding: 100px 0 85px;
+
+            max-width: 850px;
+        }
+
+
+        .eyebrow {
+
+            margin-bottom: 22px;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.17em;
+
+            color: var(--accent);
+        }
+
+
+        .hero h1 {
+
+            font-family: var(--serif);
+
+            font-size: clamp(43px, 6vw, 72px);
+
+            font-weight: 400;
+
+            line-height: 1.02;
+
+            letter-spacing: -0.035em;
+
             margin-bottom: 28px;
         }
 
-        .filter {
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-soft);
-            padding: 8px 13px;
-            border-radius: 100px;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+
+        .hero p {
+
+            max-width: 680px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+
+            line-height: 1.8;
         }
 
-        .filter:hover,
-        .filter.active {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-container {
+
+            margin-bottom: 95px;
         }
 
-        /* -------------------------
-           RESEARCH CARDS
-        ------------------------- */
 
-        .research-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+        .search-box {
+
+            position: relative;
         }
 
-        .research-card {
+
+        .search-box input {
+
+            width: 100%;
+
             background: var(--surface);
+
             border: 1px solid var(--border);
-            padding: 30px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            border-radius: 3px;
+
+            padding: 19px 22px 19px 52px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            color: var(--text);
         }
 
-        .research-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+
+        .search-box input:focus {
+
+            border-color: var(--accent);
+
+            box-shadow: 0 3px 15px rgba(0,0,0,0.035);
         }
 
-        .research-meta {
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 20px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--muted);
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            margin-bottom: 100px;
+        }
+
+
+        .section-heading {
+
             display: flex;
+
+            align-items: baseline;
+
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 27px;
+
+            border-bottom: 1px solid var(--border);
+
+            padding-bottom: 15px;
+
+            margin-bottom: 30px;
         }
 
-        .research-category {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-        }
 
-        .research-date {
-            font-size: 10px;
-            color: #a3a29a;
-        }
+        .section-heading h2 {
 
-        .research-card h3 {
             font-family: var(--serif);
-            font-size: 25px;
+
+            font-size: 29px;
+
             font-weight: 400;
-            line-height: 1.25;
-            margin-bottom: 14px;
         }
 
-        .research-card p {
-            font-size: 13px;
-            color: var(--text-soft);
-            line-height: 1.7;
-            margin-bottom: 25px;
+
+        .section-heading span {
+
+            font-size: 11px;
+
+            color: var(--muted);
         }
 
-        .research-footer {
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            color: #98978f;
-        }
 
-        .read-more {
-            color: var(--accent);
-        }
+        /* =========================
+           EMPTY STATES
+        ========================= */
 
-        .no-results {
-            display: none;
-            padding: 50px 20px;
-            text-align: center;
-            color: var(--text-soft);
+        .empty-state {
+
+            background: var(--surface);
+
             border: 1px dashed var(--border);
+
+            padding: 65px 35px;
+
+            text-align: center;
         }
 
-        /* -------------------------
+
+        .empty-state h3 {
+
+            font-family: var(--serif);
+
+            font-size: 25px;
+
+            font-weight: 400;
+
+            margin-bottom: 12px;
+        }
+
+
+        .empty-state p {
+
+            max-width: 510px;
+
+            margin: 0 auto;
+
+            font-size: 13px;
+
+            color: var(--muted);
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
            ABOUT
-        ------------------------- */
+        ========================= */
 
         .about-grid {
+
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 70px;
         }
 
+
         .about-large {
+
             font-family: var(--serif);
+
             font-size: 27px;
+
             line-height: 1.4;
         }
 
+
         .about-text {
-            color: var(--text-soft);
+
+            color: var(--muted);
+
             font-size: 14px;
-            line-height: 1.8;
+
+            line-height: 1.85;
         }
+
 
         .about-text p {
             margin-bottom: 18px;
         }
 
-        /* -------------------------
+
+        /* =========================
            FOOTER
-        ------------------------- */
+        ========================= */
 
         footer {
+
             border-top: 1px solid var(--border);
+
             padding: 30px 0;
-            color: #98978f;
-            font-size: 11px;
+
             display: flex;
+
             justify-content: space-between;
+
+            color: var(--light-muted);
+
+            font-size: 11px;
         }
 
-        /* -------------------------
+
+        /* =========================
            MOBILE
-        ------------------------- */
+        ========================= */
 
         .mobile-header {
             display: none;
         }
 
-        @media (max-width: 900px) {
+
+        @media (max-width: 850px) {
 
             .sidebar {
                 display: none;
             }
 
+
             .main {
+
                 margin-left: 0;
-                width: 100%;
             }
+
 
             .mobile-header {
-                display: flex;
+
                 height: 65px;
+
+                display: flex;
+
                 align-items: center;
+
                 justify-content: space-between;
+
                 padding: 0 22px;
+
                 border-bottom: 1px solid var(--border);
-                background: var(--background);
             }
 
+
             .mobile-brand {
+
                 font-family: var(--serif);
+
                 font-size: 17px;
             }
 
-            .mobile-menu {
-                border: none;
-                background: transparent;
-                font-size: 22px;
-                cursor: pointer;
-            }
 
             .topbar {
                 display: none;
             }
 
+
             .content {
+
                 padding: 0 22px 60px;
             }
 
+
             .hero {
+
                 padding: 65px 0 55px;
             }
 
+
             .hero h1 {
+
                 font-size: 46px;
             }
 
+
             .hero p {
+
                 font-size: 15px;
             }
 
-            .exploring-grid,
-            .research-list {
-                grid-template-columns: 1fr;
-            }
 
             .about-grid {
+
                 grid-template-columns: 1fr;
+
                 gap: 30px;
             }
 
-            section {
-                margin-bottom: 70px;
-            }
 
             footer {
+
                 flex-direction: column;
+
                 gap: 10px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-<div class="site">
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
     <aside class="sidebar">
 
         <div class="brand">
-            <div class="brand-mark">E</div>
+
+            <div class="brand-mark">
+                E
+            </div>
 
             <div class="brand-name">
-                Public Library of Economics
+                {{ site.title }}
             </div>
 
             <div class="brand-subtitle">
-                Economics · Behaviour · Ideas
+                {{ site.subtitle }}
             </div>
+
         </div>
+
 
         <nav>
 
             <div class="nav-section">
-                <div class="nav-label">Explore</div>
 
-                <a class="nav-link active" href="#home">
+                <div class="nav-label">
+                    Explore
+                </div>
+
+                <a class="nav-link" href="#home">
                     Home
                 </a>
 
                 <a class="nav-link" href="#research">
-                    All Research
+                    Research Library
                 </a>
 
                 <a class="nav-link" href="#exploring">
                     Currently Exploring
                 </a>
+
             </div>
 
+
             <div class="nav-section">
-                <div class="nav-label">Research</div>
+
+                <div class="nav-label">
+                    Categories
+                </div>
 
                 <a class="nav-link" href="#research">
-                    Economics
+                    Categories coming soon
                 </a>
 
-                <a class="nav-link" href="#research">
-                    Consumer Behaviour
-                </a>
-
-                <a class="nav-link" href="#research">
-                    Behaviour & Decision-Making
-                </a>
-
-                <a class="nav-link" href="#research">
-                    Markets & Business
-                </a>
             </div>
 
-            <div class="nav-section">
-                <div class="nav-label">Ideas</div>
 
-                <a class="nav-link" href="#about">
+            <div class="nav-section">
+
+                <div class="nav-label">
+                    Ideas
+                </div>
+
+                <a class="nav-link" href="#questions">
                     Research Questions
                 </a>
 
-                <a class="nav-link" href="#about">
+                <a class="nav-link" href="#ideas">
                     Emerging Ideas
                 </a>
+
+            </div>
+
+
+            <div class="nav-section">
+
+                <div class="nav-label">
+                    About
+                </div>
+
+                <a class="nav-link" href="#about">
+                    Methodology
+                </a>
+
             </div>
 
         </nav>
 
+
         <div class="sidebar-note">
-            An independent research project exploring the evidence behind economic and behavioural questions.
+
+            An independent research library.
+            Research, analysis and questions —
+            kept distinct from one another.
+
         </div>
 
     </aside>
 
 
-    <!-- MAIN -->
+    <!-- =========================
+         MAIN
+    ========================== -->
 
     <main class="main">
 
+
         <div class="mobile-header">
+
             <div class="mobile-brand">
-                Public Library
+                {{ site.short_title }}
             </div>
 
-            <button class="mobile-menu">
-                ☰
-            </button>
         </div>
 
 
         <div class="topbar">
 
             <div class="topbar-label">
-                Independent research library · 2026
+                {{ site.tagline }}
             </div>
 
             <div class="top-links">
-                <a href="#about">About</a>
-                <a href="#research">Research</a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#research">
+                    Research
+                </a>
+
             </div>
 
         </div>
@@ -666,22 +743,25 @@
 
         <div class="content">
 
-            <!-- HERO -->
+
+            <!-- HOME -->
 
             <section class="hero" id="home">
 
                 <div class="eyebrow">
-                    Economics · Consumer Behaviour · Research
+                    {{ site.subtitle }}
                 </div>
+
 
                 <h1>
                     Understanding how people, markets and decisions interact.
                 </h1>
 
+
                 <p>
-                    An independent research library exploring academic evidence,
-                    connecting ideas across disciplines, and asking what the
-                    research means beyond the paper.
+                    An independent research library for exploring
+                    academic evidence, connecting ideas and asking
+                    what research means beyond the paper.
                 </p>
 
             </section>
@@ -693,13 +773,14 @@
 
                 <div class="search-box">
 
-                    <span class="search-icon">⌕</span>
+                    <span class="search-icon">
+                        ⌕
+                    </span>
 
                     <input
-                        type="text"
-                        id="searchInput"
+                        type="search"
                         placeholder="Search the research library..."
-                        aria-label="Search the research library"
+                        aria-label="Search research"
                     >
 
                 </div>
@@ -713,61 +794,28 @@
 
                 <div class="section-heading">
 
-                    <h2>Currently exploring</h2>
+                    <h2>
+                        Currently exploring
+                    </h2>
 
-                    <span>Questions in progress</span>
+                    <span>
+                        To be added
+                    </span>
 
                 </div>
 
 
-                <div class="exploring-grid">
+                <div class="empty-state">
 
-                    <article class="exploring-card">
+                    <h3>
+                        Nothing published here yet.
+                    </h3>
 
-                        <div class="card-number">01</div>
-
-                        <h3>
-                            The economics of attention
-                        </h3>
-
-                        <p>
-                            What determines which products, ideas and information
-                            people notice — and what happens when attention becomes scarce?
-                        </p>
-
-                    </article>
-
-
-                    <article class="exploring-card">
-
-                        <div class="card-number">02</div>
-
-                        <h3>
-                            How consumers perceive value
-                        </h3>
-
-                        <p>
-                            Exploring reference prices, framing, expectations and
-                            the psychological mechanisms behind perceived value.
-                        </p>
-
-                    </article>
-
-
-                    <article class="exploring-card">
-
-                        <div class="card-number">03</div>
-
-                        <h3>
-                            Behaviour under uncertainty
-                        </h3>
-
-                        <p>
-                            How economic uncertainty can influence decisions,
-                            expectations, spending and consumer behaviour.
-                        </p>
-
-                    </article>
+                    <p>
+                        This space will contain topics currently being
+                        investigated. It will be updated as the research
+                        develops.
+                    </p>
 
                 </div>
 
@@ -780,298 +828,95 @@
 
                 <div class="section-heading">
 
-                    <h2>Research library</h2>
+                    <h2>
+                        Research library
+                    </h2>
 
-                    <span id="resultCount">6 entries</span>
-
-                </div>
-
-
-                <div class="filters">
-
-                    <button class="filter active" data-filter="all">
-                        All
-                    </button>
-
-                    <button class="filter" data-filter="economics">
-                        Economics
-                    </button>
-
-                    <button class="filter" data-filter="behaviour">
-                        Consumer Behaviour
-                    </button>
-
-                    <button class="filter" data-filter="decision">
-                        Decision-Making
-                    </button>
-
-                    <button class="filter" data-filter="business">
-                        Business & Markets
-                    </button>
+                    <span>
+                        {{ site.research_status }}
+                    </span>
 
                 </div>
 
 
-                <div class="research-list" id="researchList">
+                <div class="empty-state">
 
+                    <h3>
+                        No research published yet.
+                    </h3>
 
-                    <article
-                        class="research-card"
-                        data-category="behaviour"
-                        data-search="price perception consumer behaviour reference prices value psychology"
-                    >
+                    <p>
+                        The library is currently being developed.
+                        Completed research will appear here as it is
+                        published.
+                    </p>
 
-                        <div class="research-meta">
+                </div>
 
-                            <span class="research-category">
-                                Consumer Behaviour
-                            </span>
+            </section>
 
-                            <span class="research-date">
-                                Research entry
-                            </span>
 
-                        </div>
+            <!-- QUESTIONS -->
 
-                        <h3>
-                            How do consumers perceive price and value?
-                        </h3>
+            <section id="questions">
 
-                        <p>
-                            An exploration of how reference points, expectations
-                            and context can influence the way consumers interpret prices.
-                        </p>
+                <div class="section-heading">
 
-                        <div class="research-footer">
+                    <h2>
+                        Research questions
+                    </h2>
 
-                            <span>
-                                Literature review
-                            </span>
-
-                            <span class="read-more">
-                                Explore →
-                            </span>
-
-                        </div>
-
-                    </article>
-
-
-                    <article
-                        class="research-card"
-                        data-category="decision"
-                        data-search="anchoring decision making behavioural economics consumer psychology"
-                    >
-
-                        <div class="research-meta">
-
-                            <span class="research-category">
-                                Decision-Making
-                            </span>
-
-                            <span class="research-date">
-                                Research entry
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Why do initial numbers influence later judgments?
-                        </h3>
-
-                        <p>
-                            Examining anchoring effects and the evidence surrounding
-                            how initial information can influence subsequent judgments.
-                        </p>
-
-                        <div class="research-footer">
-
-                            <span>
-                                Behavioural economics
-                            </span>
-
-                            <span class="read-more">
-                                Explore →
-                            </span>
-
-                        </div>
-
-                    </article>
-
-
-                    <article
-                        class="research-card"
-                        data-category="economics"
-                        data-search="inflation consumer spending economics prices household behaviour"
-                    >
-
-                        <div class="research-meta">
-
-                            <span class="research-category">
-                                Economics
-                            </span>
-
-                            <span class="research-date">
-                                Research entry
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            How does inflation affect consumer behaviour?
-                        </h3>
-
-                        <p>
-                            Looking at the relationship between changing prices,
-                            expectations and household consumption decisions.
-                        </p>
-
-                        <div class="research-footer">
-
-                            <span>
-                                Macroeconomics
-                            </span>
-
-                            <span class="read-more">
-                                Explore →
-                            </span>
-
-                        </div>
-
-                    </article>
-
-
-                    <article
-                        class="research-card"
-                        data-category="business"
-                        data-search="scarcity marketing consumer behaviour business demand limited supply"
-                    >
-
-                        <div class="research-meta">
-
-                            <span class="research-category">
-                                Business & Markets
-                            </span>
-
-                            <span class="research-date">
-                                Research entry
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            What does scarcity do to perceived value?
-                        </h3>
-
-                        <p>
-                            Exploring why limited availability can affect consumer
-                            attention, perceived desirability and purchasing decisions.
-                        </p>
-
-                        <div class="research-footer">
-
-                            <span>
-                                Consumer research
-                            </span>
-
-                            <span class="read-more">
-                                Explore →
-                            </span>
-
-                        </div>
-
-                    </article>
-
-
-                    <article
-                        class="research-card"
-                        data-category="decision"
-                        data-search="social proof decisions consumer behaviour conformity choices psychology"
-                    >
-
-                        <div class="research-meta">
-
-                            <span class="research-category">
-                                Decision-Making
-                            </span>
-
-                            <span class="research-date">
-                                Research entry
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            How does social information affect choice?
-                        </h3>
-
-                        <p>
-                            Investigating how information about other people's
-                            behaviour can influence individual decisions.
-                        </p>
-
-                        <div class="research-footer">
-
-                            <span>
-                                Behavioural research
-                            </span>
-
-                            <span class="read-more">
-                                Explore →
-                            </span>
-
-                        </div>
-
-                    </article>
-
-
-                    <article
-                        class="research-card"
-                        data-category="economics"
-                        data-search="attention economics information markets consumer choice digital platforms"
-                    >
-
-                        <div class="research-meta">
-
-                            <span class="research-category">
-                                Economics
-                            </span>
-
-                            <span class="research-date">
-                                Research entry
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Is attention an economic resource?
-                        </h3>
-
-                        <p>
-                            Exploring how limited attention shapes markets,
-                            information consumption and digital behaviour.
-                        </p>
-
-                        <div class="research-footer">
-
-                            <span>
-                                Economic theory
-                            </span>
-
-                            <span class="read-more">
-                                Explore →
-                            </span>
-
-                        </div>
-
-                    </article>
-
+                    <span>
+                        To be developed
+                    </span>
 
                 </div>
 
 
-                <div class="no-results" id="noResults">
-                    No research entries match your search.
+                <div class="empty-state">
+
+                    <h3>
+                        No questions published yet.
+                    </h3>
+
+                    <p>
+                        Questions arising from the research will be
+                        collected here separately from established findings.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- IDEAS -->
+
+            <section id="ideas">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Emerging ideas
+                    </h2>
+
+                    <span>
+                        To be developed
+                    </span>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <h3>
+                        No ideas published yet.
+                    </h3>
+
+                    <p>
+                        Hypotheses, connections and original ideas will
+                        appear here when they are ready to be published.
+                    </p>
+
                 </div>
 
             </section>
@@ -1083,14 +928,19 @@
 
                 <div class="section-heading">
 
-                    <h2>About the library</h2>
+                    <h2>
+                        About the library
+                    </h2>
 
-                    <span>The approach</span>
+                    <span>
+                        Methodology
+                    </span>
 
                 </div>
 
 
                 <div class="about-grid">
+
 
                     <div class="about-large">
 
@@ -1103,20 +953,24 @@
                     <div class="about-text">
 
                         <p>
-                            This project explores economics and consumer behaviour
-                            through academic research, with a focus on understanding
-                            what the evidence actually tells us.
+                            This project is being developed as an independent
+                            research library exploring economics, consumer
+                            behaviour and related fields.
                         </p>
 
-                        <p>
-                            Research is examined critically, connected to related
-                            ideas, and translated into questions and applications
-                            that can be understood beyond academia.
-                        </p>
 
                         <p>
-                            Findings, interpretations and hypotheses are kept
-                            distinct so that uncertainty and limitations remain visible.
+                            Academic research will be read, examined critically,
+                            connected to other evidence and translated into
+                            accessible analysis.
+                        </p>
+
+
+                        <p>
+                            Published findings, interpretation, hypotheses and
+                            speculation will be kept distinct so that readers
+                            can understand what is established, what is inferred,
+                            and what remains uncertain.
                         </p>
 
                     </div>
@@ -1131,99 +985,21 @@
             <footer>
 
                 <span>
-                    Public Library of Economics & Consumer Behaviour
+                    {{ site.title }}
                 </span>
 
                 <span>
-                    Independent research project
+                    {{ site.footer }}
                 </span>
 
             </footer>
+
 
         </div>
 
     </main>
 
-</div>
-
-
-<script>
-
-    const searchInput = document.getElementById("searchInput");
-    const researchCards = document.querySelectorAll(".research-card");
-    const filters = document.querySelectorAll(".filter");
-    const resultCount = document.getElementById("resultCount");
-    const noResults = document.getElementById("noResults");
-
-    let activeFilter = "all";
-
-
-    function updateResearch() {
-
-        const query = searchInput.value.toLowerCase().trim();
-
-        let visibleCount = 0;
-
-
-        researchCards.forEach(card => {
-
-            const category = card.dataset.category;
-            const searchableText = card.dataset.search.toLowerCase();
-
-            const matchesSearch =
-                query === "" ||
-                searchableText.includes(query) ||
-                card.innerText.toLowerCase().includes(query);
-
-            const matchesFilter =
-                activeFilter === "all" ||
-                category === activeFilter;
-
-            if (matchesSearch && matchesFilter) {
-
-                card.style.display = "block";
-                visibleCount++;
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-
-        resultCount.textContent =
-            visibleCount + (visibleCount === 1 ? " entry" : " entries");
-
-        noResults.style.display =
-            visibleCount === 0 ? "block" : "none";
-
-    }
-
-
-    searchInput.addEventListener("input", updateResearch);
-
-
-    filters.forEach(filter => {
-
-        filter.addEventListener("click", () => {
-
-            filters.forEach(button =>
-                button.classList.remove("active")
-            );
-
-            filter.classList.add("active");
-
-            activeFilter = filter.dataset.filter;
-
-            updateResearch();
-
-        });
-
-    });
-
-</script>
 
 </body>
+
 </html>
