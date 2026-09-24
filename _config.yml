@@ -1,0 +1,27 @@
+title: "Public Library of Economics & Consumer Behaviour"
+
+short_title: "Public Library"
+
+subtitle: "Economics · Consumer Behaviour · Research"
+
+tagline: "Independent research library · 2026"
+
+description: "An independent research library exploring economics, consumer behaviour, markets and decision-making."
+
+research_status: "No publications yet"
+
+footer: "Independent research project"
+
+markdown: kramdown
+
+collections:
+  research:
+    output: true
+    permalink: /research/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "research"
+    values:
+      layout: "research"
