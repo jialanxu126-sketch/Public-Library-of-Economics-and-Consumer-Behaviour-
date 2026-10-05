@@ -839,19 +839,31 @@
                 </div>
 
 
-                <div class="empty-state">
+          {% for research in site.research %}
 
-                    <h3>
-                        No research published yet.
-                    </h3>
+<a href="_research/2026-10-05-agentic-ai-human-heuristics.md" class="research-card">
 
-                    <p>
-                        The library is currently being developed.
-                        Completed research will appear here as it is
-                        published.
-                    </p>
+    <div class="research-card-top">
+        <span>Technology|AI Commerce|Behavioural Economics|Consumer Behaviour</span>
+        <span>05/10/2026</span>
+    </div>
 
-                </div>
+    <h3>
+        How agentic AI deploys human heuristics as a surrogate consumer
+    </h3>
+
+    <p>
+        How AI shopping agents respoind to pricing cues, information costs and specificity of the instructions.
+    </p>
+
+    <div class="research-card-bottom">
+        <span>5 minutes</span>
+        <span>Read research →</span>
+    </div>
+
+</a>
+
+{% endfor %}
 
             </section>
 
