@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -824,48 +824,48 @@
 
             <!-- RESEARCH -->
 
-            <section id="research">
+<section id="research">
 
-                <div class="section-heading">
+    <div class="section-heading">
 
-                    <h2>
-                        Research library
-                    </h2>
+        <h2>
+            Research library
+        </h2>
 
-                    <span>
-                        {{ site.research_status }}
-                    </span>
+        <span>
+            Research
+        </span>
 
-                </div>
-
-
-          {% for research in site.research %}
-
-<a href="_research/2026-10-05-agentic-ai-human-heuristics.md" class="research-card">
-
-    <div class="research-card-top">
-        <span>Technology|AI Commerce|Behavioural Economics|Consumer Behaviour</span>
-        <span>05/10/2026</span>
     </div>
 
-    <h3>
-        How agentic AI deploys human heuristics as a surrogate consumer
-    </h3>
 
-    <p>
-        How AI shopping agents respoind to pricing cues, information costs and specificity of the instructions.
-    </p>
+    {% for research in site.research %}
 
-    <div class="research-card-bottom">
-        <span>5 minutes</span>
-        <span>Read research →</span>
-    </div>
+    <a href="{{ research.url | relative_url }}" class="research-card">
 
-</a>
+        <div class="research-card-top">
+            <span>{{ research.category }}</span>
+            <span>{{ research.date | date: "%-d %B %Y" }}</span>
+        </div>
 
-{% endfor %}
+        <h3>
+            {{ research.title }}
+        </h3>
 
-            </section>
+        <p>
+            {{ research.description }}
+        </p>
+
+        <div class="research-card-bottom">
+            <span>{{ research.reading_time }}</span>
+            <span>Read research →</span>
+        </div>
+
+    </a>
+
+    {% endfor %}
+
+</section>
 
 
             <!-- QUESTIONS -->
@@ -874,7 +874,7 @@
 
                 <div class="section-heading">
 
-                    <h2>
+                    <h2> 
                         Research questions
                     </h2>
 
